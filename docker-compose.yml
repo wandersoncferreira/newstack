@@ -1,0 +1,25 @@
+version: '3.6'
+
+networks:
+  newstack:
+    driver: bridge
+
+services:
+  repl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - newstack
+    ports:
+      - "17020:17020"
+    volumes:
+      - $HOME:$HOME
+      - $PWD:$PWD
+      - /etc/passwd:/etc/passwd
+      - /etc/group:/etc/group
+      - $HOME/.lein:$HOME/.lein
+      - /tmp:/tmp
+      - .:/app/
+      - ./.m2:/root/.m2/repository
+    user: ${CURRENT_UID}
