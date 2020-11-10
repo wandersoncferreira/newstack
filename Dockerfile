@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY . /app
 
+RUN echo '(println "Clojure getting packages")' | clojure -
+
 ENTRYPOINT ["clojure", \
             "-Acider", \
             "-m", "nrepl.cmdline", \

@@ -18,8 +18,20 @@ services:
       - $PWD:$PWD
       - /etc/passwd:/etc/passwd
       - /etc/group:/etc/group
-      - $HOME/.lein:$HOME/.lein
       - /tmp:/tmp
       - .:/app/
-      - ./.m2:/root/.m2/repository
+      - ./.cpcache:/app/.cpcache
     user: ${CURRENT_UID}
+
+  db:
+    image: 'mongo'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=usuario
+      - MONGO_INITDB_ROOT_PASSWORD=senha
+    networks:
+      - newstack
+    volumes:
+      - ./mongo-volume:/data/db
+      - ./mongo:/docker-entrypoint-initdb.d/
+    ports:
+      - "27017-27019:27017-27019"
