@@ -20,3 +20,8 @@
 
 (defn create-new-mongodb []
   (->MongoDB))
+
+(defn save-prisoner []
+  ;; 1. verify if castle exist
+  ;; 2. we can only have prisoners if there is a king in power
+  )
