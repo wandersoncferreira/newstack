@@ -1,6 +1,5 @@
 # New Stack
 
-
 Mock project to learn how to setup and play with a new set of clojure
 libraries and tools.
 

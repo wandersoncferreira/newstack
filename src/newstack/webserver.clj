@@ -44,12 +44,13 @@
     (command (merge {:action action-name} req))))
 
 (defn handler [database]
-  (compojure/routes
-   (GET "/prisoners" [] (command-handler :get-prisoners))
-   (POST "/prisoners" [] (command-handler :save-prisoners))
-   (POST "/king" [] (command-handler :save-king))
-   (GET "/king" [] (command-handler :list-king))
-   (route/not-found "You shall not pass!")))
+  (letfn [(action [a] {:action a :database database})]
+    (compojure/routes
+     (GET "/prisoners" [] (command-handler (action :get-prisoners)))
+     (POST "/prisoners" [] (command-handler (action :save-prisoners)))
+     (POST "/king" [] (command-handler (action :save-king)))
+     (GET "/king" [] (command-handler (action :list-king)))
+     (route/not-found "You shall not pass!"))))
 
 (defrecord Webserver [port database]
   component/Lifecycle
