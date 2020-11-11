@@ -1,13 +1,12 @@
 (ns newstack.entities
   (:require [schema.core :as s]
-            [schema-generators.complete :as c]
             [schema-generators.generators :as g]))
 
 (def Prisoner
   {:prisoner/name s/Str
-   :prisoner/age s/Int
-   :prisoner/religion #{s/Keyword}
-   :prisoner/sentence-years s/Int})
+   (s/optional-key :prisoner/age) s/Int
+   (s/optional-key :prisoner/religion) #{s/Keyword}
+   (s/optional-key :prisoner/sentence-years) s/Int})
 
 (def King
   {:king/name s/Str
