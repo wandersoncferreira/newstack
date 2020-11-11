@@ -17,3 +17,6 @@
     (let [{:keys [conn]} component]
       (mg/disconnect conn)
       (assoc component :conn nil))))
+
+(defn create-new-mongodb []
+  (->MongoDB))
